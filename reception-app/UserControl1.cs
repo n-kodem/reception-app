@@ -16,5 +16,28 @@ namespace reception_app
         {
             InitializeComponent();
         }
+
+        private void resCreator_Click(object sender, EventArgs e)
+        {
+            foreach (Control ctrl in Form.ActiveForm.Controls)
+            {
+                ctrl.Dispose();
+            }
+            Form.ActiveForm.Controls.Add(new ResCreator());
+        }
+
+        private void adminPanel_Click(object sender, EventArgs e)
+        {
+            foreach (Control ctrl in Form.ActiveForm.Controls)
+            {
+                ctrl.Dispose();
+            }
+            Form.ActiveForm.Controls.Add(new AdminPanel());
+        }
+
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -29,43 +29,49 @@ namespace reception_app
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            System.Windows.Forms.Button resCreator;
+            this.adminPanel = new System.Windows.Forms.Button();
+            resCreator = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // resCreator
             // 
-            this.button1.Location = new System.Drawing.Point(74, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 96);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            resCreator.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            resCreator.Location = new System.Drawing.Point(74, 170);
+            resCreator.Name = "resCreator";
+            resCreator.Size = new System.Drawing.Size(203, 106);
+            resCreator.TabIndex = 0;
+            resCreator.Text = "Create reservation";
+            resCreator.UseVisualStyleBackColor = true;
+            resCreator.Click += new System.EventHandler(this.resCreator_Click);
             // 
-            // button2
+            // adminPanel
             // 
-            this.button2.Location = new System.Drawing.Point(361, 170);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(158, 96);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.adminPanel.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.adminPanel.Location = new System.Drawing.Point(361, 170);
+            this.adminPanel.Name = "adminPanel";
+            this.adminPanel.Size = new System.Drawing.Size(188, 106);
+            this.adminPanel.TabIndex = 1;
+            this.adminPanel.Text = "Panel";
+            this.adminPanel.UseVisualStyleBackColor = true;
+            this.adminPanel.Click += new System.EventHandler(this.adminPanel_Click);
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.adminPanel);
+            this.Controls.Add(resCreator);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(641, 481);
+            this.Load += new System.EventHandler(this.UserControl1_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button resCreator;
+        private System.Windows.Forms.Button adminPanel;
     }
 }
