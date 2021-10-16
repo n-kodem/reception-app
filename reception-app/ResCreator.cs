@@ -62,6 +62,7 @@ namespace reception_app
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            // BASIC DATA VALIDATION
             if (
                 nameInp.Text!= "Patient name" ||
                 researchInp.Text != "Research name" ||

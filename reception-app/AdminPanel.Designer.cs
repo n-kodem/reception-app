@@ -86,6 +86,7 @@ namespace reception_app
             this.submitBtn.TabIndex = 3;
             this.submitBtn.Text = "Submit changes";
             this.submitBtn.UseVisualStyleBackColor = true;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // cancelBtn
             // 
@@ -95,6 +96,7 @@ namespace reception_app
             this.cancelBtn.TabIndex = 4;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // AdminPanel
             // 
