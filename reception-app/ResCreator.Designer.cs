@@ -56,8 +56,10 @@ namespace reception_app
             // 
             // dateInp
             // 
+            this.dateInp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateInp.Location = new System.Drawing.Point(56, 166);
             this.dateInp.Name = "dateInp";
+            this.dateInp.ShowUpDown = true;
             this.dateInp.Size = new System.Drawing.Size(277, 27);
             this.dateInp.TabIndex = 5;
             // 

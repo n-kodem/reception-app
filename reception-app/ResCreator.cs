@@ -25,6 +25,7 @@ namespace reception_app
             researchInp.Init("Research name");
             dayShower.Text = "Today is: " + DateTime.Today;
             hourLab.Text = "Time: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute;
+            dateInp.CustomFormat = "yyyy.MM.dd HH:mm";
             dateInp.Value = DateTime.Now.Date;
 
 
@@ -35,17 +36,24 @@ namespace reception_app
             {
                 sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
                 sqlite_conn.Open();
-                MessageBox.Show("31");
+                MessageBox.Show("DB exist");
             }
             else
             {
                 sqlite_conn = new SQLiteConnection("Data Source=reception.db;Version=3;New=True;Compress=True;");
                 sqlite_conn.Open();
                 sqlite_cmd = sqlite_conn.CreateCommand();
-                sqlite_cmd.CommandText = "CREATE TABLE Client (id integer primary key, Title  varchar(100),Name  varchar(100),Surname  varchar(100),Dateofbirth DateTime , Propertyname varchar(100),Moveindate DateTime,Relationship varchar(100),Spouse  varchar(100),Gender  varchar(100), spTitle  varchar(100),SpouseName  varchar(100),SpouseSurname  varchar(100),spDateofbirth DateTime ,spRelationship varchar(100),spSpouse  varchar(100),spGender  varchar(100));";
+                sqlite_cmd.CommandText = $"CREATE TABLE IF NOT EXISTS Client (update_date TEXT PRIMARY KEY, research_date TEXT, research_name VARCHAR(100), name VARCHAR(100));";
                 sqlite_cmd.ExecuteNonQuery();
+                MessageBox.Show("DB created");
             }
+
             sqlite_conn.Close();
+
+            //sqlite_conn = new SQLiteConnection("Data Source=reception.db;Version=3;New=True;Compress=True;");
+            //sqlite_conn.Open();
+            //sqlite_cmd.CommandText = $"DROP TABLE Client;";
+            //sqlite_cmd.ExecuteNonQuery();
         }
         private void tenMinTimer_Tick(object sender, EventArgs e)
         {
@@ -89,7 +97,22 @@ namespace reception_app
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
+            // TODO: DATA VALIDATION
+            SQLiteConnection sqlite_conn;
+            SQLiteCommand sqlite_cmd;
 
+            sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
+            sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+
+            sqlite_cmd.CommandText = $"INSERT INTO " +
+                $"Client(update_date,research_date,research_name,name) " +
+                $"VALUES(DATETIME('now'),'{dateInp.Value:yyyy-MM-dd HH:mm:ss}','{researchInp.Text}','{nameInp.Text}')";
+
+            //MessageBox.Show(sqlite_cmd.CommandText);
+            MessageBox.Show(sqlite_cmd.ExecuteNonQuery().ToString());
+
+            sqlite_conn.Close();
         }
     }
 }

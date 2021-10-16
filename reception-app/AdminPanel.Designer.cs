@@ -29,46 +29,94 @@ namespace reception_app
         /// </summary>
         private void InitializeComponent()
         {
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.researchesSet = new System.Windows.Forms.DataGridView();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.research_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.submitBtn = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.researchesSet)).BeginInit();
             this.SuspendLayout();
             // 
-            // vScrollBar1
+            // researchesSet
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(453, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(26, 459);
-            this.vScrollBar1.TabIndex = 0;
+            this.researchesSet.AllowUserToAddRows = false;
+            this.researchesSet.AllowUserToDeleteRows = false;
+            this.researchesSet.AllowUserToResizeColumns = false;
+            this.researchesSet.ColumnHeadersHeight = 50;
+            this.researchesSet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.data,
+            this.research_name,
+            this.patient});
+            this.researchesSet.Location = new System.Drawing.Point(0, 0);
+            this.researchesSet.Name = "researchesSet";
+            this.researchesSet.RowHeadersWidth = 10;
+            this.researchesSet.RowTemplate.Height = 29;
+            this.researchesSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.researchesSet.Size = new System.Drawing.Size(610, 315);
+            this.researchesSet.TabIndex = 2;
+            this.researchesSet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.researchesSet_CellContentClick);
             // 
-            // tableLayoutPanel1
+            // data
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(82, 77);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(250, 125);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.data.HeaderText = "Data";
+            this.data.MinimumWidth = 6;
+            this.data.Name = "data";
+            this.data.Width = 200;
+            // 
+            // research_name
+            // 
+            this.research_name.HeaderText = "Nazwa Badania";
+            this.research_name.MinimumWidth = 6;
+            this.research_name.Name = "research_name";
+            this.research_name.Width = 200;
+            // 
+            // patient
+            // 
+            this.patient.HeaderText = "Dane Pacjenta";
+            this.patient.MinimumWidth = 6;
+            this.patient.Name = "patient";
+            this.patient.Width = 200;
+            // 
+            // submitBtn
+            // 
+            this.submitBtn.Location = new System.Drawing.Point(48, 360);
+            this.submitBtn.Name = "submitBtn";
+            this.submitBtn.Size = new System.Drawing.Size(142, 71);
+            this.submitBtn.TabIndex = 3;
+            this.submitBtn.Text = "Submit changes";
+            this.submitBtn.UseVisualStyleBackColor = true;
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(378, 360);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(142, 71);
+            this.cancelBtn.TabIndex = 4;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
             // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.vScrollBar1);
+            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.submitBtn);
+            this.Controls.Add(this.researchesSet);
             this.Name = "AdminPanel";
-            this.Size = new System.Drawing.Size(479, 459);
+            this.Size = new System.Drawing.Size(711, 479);
             this.Load += new System.EventHandler(this.AdminPanel_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.researchesSet)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.VScrollBar vScrollBar1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridView researchesSet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn research_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patient;
+        private System.Windows.Forms.Button submitBtn;
+        private System.Windows.Forms.Button cancelBtn;
     }
 }
