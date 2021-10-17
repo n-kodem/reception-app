@@ -43,7 +43,8 @@ namespace reception_app
                 sqlite_conn = new SQLiteConnection("Data Source=reception.db;Version=3;New=True;Compress=True;");
                 sqlite_conn.Open();
                 sqlite_cmd = sqlite_conn.CreateCommand();
-                sqlite_cmd.CommandText = $"CREATE TABLE IF NOT EXISTS Client (update_date TEXT PRIMARY KEY, research_date TEXT, research_name VARCHAR(100), name VARCHAR(100));";
+                sqlite_cmd.CommandText = $"CREATE TABLE IF NOT EXISTS Client (update_date TEXT PRIMARY KEY," +
+                    $" research_id UNSIGNED iNT, research_date TEXT, research_name VARCHAR(100), name VARCHAR(100));";
                 sqlite_cmd.ExecuteNonQuery();
                 MessageBox.Show("DB created");
             }
@@ -107,8 +108,9 @@ namespace reception_app
             sqlite_cmd = sqlite_conn.CreateCommand();
 
             sqlite_cmd.CommandText = $"INSERT INTO " +
-                $"Client(update_date,research_date,research_name,name) " +
-                $"VALUES(DATETIME('now'),'{dateInp.Value:yyyy-MM-dd HH:mm:ss}','{researchInp.Text}','{nameInp.Text}')";
+                $"Client(update_date,research_id,research_date,research_name,name) " +
+                $"VALUES(DATETIME('now'),(SELECT IFNULL(MAX(research_id)+1,0) FROM Client)," +
+                $"'{dateInp.Value:yyyy-MM-dd HH:mm:ss}','{researchInp.Text}','{nameInp.Text}')";
 
             //MessageBox.Show(sqlite_cmd.CommandText);
             MessageBox.Show(sqlite_cmd.ExecuteNonQuery().ToString());

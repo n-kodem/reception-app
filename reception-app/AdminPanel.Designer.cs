@@ -30,11 +30,15 @@ namespace reception_app
         private void InitializeComponent()
         {
             this.researchesSet = new System.Windows.Forms.DataGridView();
+            this.research_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.research_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.submitBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.delBackupsBtn = new System.Windows.Forms.Button();
+            this.backupPanelBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.researchesSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +49,7 @@ namespace reception_app
             this.researchesSet.AllowUserToResizeColumns = false;
             this.researchesSet.ColumnHeadersHeight = 50;
             this.researchesSet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.research_id,
             this.data,
             this.research_name,
             this.patient});
@@ -53,9 +58,19 @@ namespace reception_app
             this.researchesSet.RowHeadersWidth = 10;
             this.researchesSet.RowTemplate.Height = 29;
             this.researchesSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.researchesSet.Size = new System.Drawing.Size(610, 315);
+            this.researchesSet.Size = new System.Drawing.Size(609, 304);
             this.researchesSet.TabIndex = 2;
+            this.researchesSet.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.researchesSet_CellBeginEdit);
             this.researchesSet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.researchesSet_CellContentClick);
+            // 
+            // research_id
+            // 
+            this.research_id.HeaderText = "Id Badania";
+            this.research_id.MinimumWidth = 6;
+            this.research_id.Name = "research_id";
+            this.research_id.ReadOnly = true;
+            this.research_id.Visible = false;
+            this.research_id.Width = 125;
             // 
             // data
             // 
@@ -80,7 +95,7 @@ namespace reception_app
             // 
             // submitBtn
             // 
-            this.submitBtn.Location = new System.Drawing.Point(48, 360);
+            this.submitBtn.Location = new System.Drawing.Point(18, 360);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(142, 71);
             this.submitBtn.TabIndex = 3;
@@ -90,7 +105,7 @@ namespace reception_app
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(378, 360);
+            this.cancelBtn.Location = new System.Drawing.Point(213, 360);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(142, 71);
             this.cancelBtn.TabIndex = 4;
@@ -98,10 +113,41 @@ namespace reception_app
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // domainUpDown1
+            // 
+            this.domainUpDown1.Location = new System.Drawing.Point(539, 404);
+            this.domainUpDown1.Name = "domainUpDown1";
+            this.domainUpDown1.Size = new System.Drawing.Size(150, 27);
+            this.domainUpDown1.TabIndex = 5;
+            this.domainUpDown1.Text = "domainUpDown1";
+            // 
+            // delBackupsBtn
+            // 
+            this.delBackupsBtn.Location = new System.Drawing.Point(389, 360);
+            this.delBackupsBtn.Name = "delBackupsBtn";
+            this.delBackupsBtn.Size = new System.Drawing.Size(108, 71);
+            this.delBackupsBtn.TabIndex = 6;
+            this.delBackupsBtn.Text = "Delete all backups";
+            this.delBackupsBtn.UseVisualStyleBackColor = true;
+            this.delBackupsBtn.Click += new System.EventHandler(this.delBackupsBtn_Click);
+            // 
+            // backupPanelBtn
+            // 
+            this.backupPanelBtn.Location = new System.Drawing.Point(539, 360);
+            this.backupPanelBtn.Name = "backupPanelBtn";
+            this.backupPanelBtn.Size = new System.Drawing.Size(150, 38);
+            this.backupPanelBtn.TabIndex = 7;
+            this.backupPanelBtn.Text = "Backup Panel";
+            this.backupPanelBtn.UseVisualStyleBackColor = true;
+            this.backupPanelBtn.Click += new System.EventHandler(this.backupPanelBtn_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.backupPanelBtn);
+            this.Controls.Add(this.delBackupsBtn);
+            this.Controls.Add(this.domainUpDown1);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.researchesSet);
@@ -115,10 +161,14 @@ namespace reception_app
 
         #endregion
         private System.Windows.Forms.DataGridView researchesSet;
+        private System.Windows.Forms.Button submitBtn;
+        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.Button delBackupsBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn research_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn data;
         private System.Windows.Forms.DataGridViewTextBoxColumn research_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn patient;
-        private System.Windows.Forms.Button submitBtn;
-        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button backupPanelBtn;
     }
 }
