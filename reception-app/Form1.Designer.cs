@@ -33,8 +33,7 @@ namespace reception_app
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(807, 577);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -45,8 +44,6 @@ namespace reception_app
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
     }
 }
 

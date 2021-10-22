@@ -3,21 +3,19 @@ using System.Windows.Forms;
 
 namespace reception_app
 {
-    public static class MyExtensions
+    public static class HintSys
     {
 
         public static void Init(this TextBox textBox, string prompt)
         {
             textBox.Text = prompt;
-            bool wma = true;
             textBox.ForeColor = Color.Gray;
             textBox.GotFocus += (source, ex) =>
             {
                 if (((TextBox)source).ForeColor == Color.Black)
                     return;
-                if (wma)
+                if (textBox.ForeColor!=Color.Black)
                 {
-                    wma = false;
                     textBox.Text = "";
                     textBox.ForeColor = Color.Black;
                 }
@@ -32,9 +30,8 @@ namespace reception_app
                     t.ForeColor = Color.Gray;
                     return;
                 }
-                if (!wma && string.IsNullOrEmpty(textBox.Text))
+                if (textBox.ForeColor==Color.Black && string.IsNullOrEmpty(textBox.Text))
                 {
-                    wma = true;
                     textBox.Text = prompt;
                     textBox.ForeColor = Color.Gray;
                 }

@@ -14,13 +14,10 @@ namespace reception_app
     {
         public Form1()
         {
-            //TODO: Admin panel improvement
-            //TODO: Self-made string list
             //TODO: Settings
             //TODO: Backup system
-            //TODO: Time count to next Reservation
-            //TODO: Finish exit ask system (Performane etc.)
-            //TODO: All other things from paper card
+
+            this.Size = new Size(800,600);
 
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
             foreach (Control ctrl in this.Controls)

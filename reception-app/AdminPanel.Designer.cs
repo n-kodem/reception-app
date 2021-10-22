@@ -36,7 +36,7 @@ namespace reception_app
             this.patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.submitBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.backupElementSelector = new System.Windows.Forms.DomainUpDown();
             this.delBackupsBtn = new System.Windows.Forms.Button();
             this.backupPanelBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.researchesSet)).BeginInit();
@@ -113,13 +113,15 @@ namespace reception_app
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // domainUpDown1
+            // backupElementSelector
             // 
-            this.domainUpDown1.Location = new System.Drawing.Point(539, 404);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(150, 27);
-            this.domainUpDown1.TabIndex = 5;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.backupElementSelector.Location = new System.Drawing.Point(539, 404);
+            this.backupElementSelector.Name = "backupElementSelector";
+            this.backupElementSelector.ReadOnly = true;
+            this.backupElementSelector.Size = new System.Drawing.Size(150, 27);
+            this.backupElementSelector.TabIndex = 5;
+            this.backupElementSelector.Text = "hiddenID";
+            this.backupElementSelector.SelectedItemChanged += new System.EventHandler(this.backupElementSelector_SelectedItemChanged);
             // 
             // delBackupsBtn
             // 
@@ -147,7 +149,7 @@ namespace reception_app
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.backupPanelBtn);
             this.Controls.Add(this.delBackupsBtn);
-            this.Controls.Add(this.domainUpDown1);
+            this.Controls.Add(this.backupElementSelector);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.researchesSet);
@@ -163,7 +165,7 @@ namespace reception_app
         private System.Windows.Forms.DataGridView researchesSet;
         private System.Windows.Forms.Button submitBtn;
         private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.DomainUpDown backupElementSelector;
         private System.Windows.Forms.Button delBackupsBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn research_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn data;

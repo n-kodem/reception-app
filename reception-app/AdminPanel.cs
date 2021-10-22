@@ -11,11 +11,13 @@ using System.Data.SQLite;
 
 
 
+
 namespace reception_app
 {
 
     public partial class AdminPanel : UserControl
     {
+        public static string idToBackup = "";
         public AdminPanel()
         {    
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace reception_app
         private void AdminPanel_Load(object sender, EventArgs e)
         {
             submitBtn.Enabled = false;
+            backupPanelBtn.Enabled = false;
 
             // Data setup
             SQLiteConnection sqlite_conn;
@@ -50,6 +53,12 @@ namespace reception_app
             }
 
             sqlite_conn.Close();
+
+            backupElementSelector.Items.Clear();
+            for (var j = 0;j<researchesSet.Rows.Count;j+=1)
+            {
+                backupElementSelector.Items.Add(researchesSet.Rows[j].Cells[0].Value);
+            }
         }
 
         private void researchesSet_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -63,7 +72,7 @@ namespace reception_app
 
             SQLiteConnection sqlite_conn;
             SQLiteCommand sqlite_cmd;
-            List<string> sql_commands = new List<string>();
+            Kolejka test_commands = new Kolejka(researchesSet.RowCount);
 
             sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
             sqlite_conn.Open();
@@ -92,13 +101,10 @@ namespace reception_app
                         ) 
                     {
 
-                        // Show changed DEV ONLY maybe change it to kind of submit
-                        MessageBox.Show($"{researchesSet.Rows[i].Cells[0].Value} {read.GetValue(read.GetOrdinal("research_date"))}\n" +
-                            $"{researchesSet.Rows[i].Cells[1].Value} {read.GetValue(read.GetOrdinal("research_name"))}\n" +
-                            $"{researchesSet.Rows[i].Cells[2].Value} {read.GetValue(read.GetOrdinal("name"))}\n");
+
 
                         // Add changes to changelist
-                        sql_commands.Add($"INSERT INTO " +
+                        test_commands.push($"INSERT INTO " +
                             $"Client(update_date,research_id,research_date,research_name,name) " +
                             $"VALUES(DATETIME('now'),{researchesSet.Rows[i].Cells[0].Value},'{researchesSet.Rows[i].Cells[1].Value:yyyy-MM-dd HH:mm:ss}'," +
                             $"'{researchesSet.Rows[i].Cells[2].Value}','{researchesSet.Rows[i].Cells[3].Value}')");
@@ -109,13 +115,16 @@ namespace reception_app
                 }
             }
 
-            //Apply changes
-            
-            foreach (var item in sql_commands)
+
+            while (test_commands.empty())
             {
                 sqlite_cmd.Reset();
-                sqlite_cmd.CommandText = item;
+                sqlite_cmd.CommandText = test_commands.front();
+                if (sqlite_cmd.CommandText is null)
+                    break;
                 sqlite_cmd.ExecuteNonQuery();
+                
+                test_commands.usun();
             }
 
             sqlite_cmd.Reset();
@@ -143,15 +152,40 @@ namespace reception_app
             }
 
             sqlite_conn.Close();
+            backupElementSelector.Items.Clear();
+            for (var j = 0; j < researchesSet.Rows.Count; j += 1)
+            {
+                backupElementSelector.Items.Add(researchesSet.Rows[j].Cells[0]);
+            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            foreach (Control ctrl in Form.ActiveForm.Controls)
+            if (submitBtn.Enabled)
             {
-                ctrl.Dispose();
+                var window = MessageBox.Show(
+                    "You have unsubmitted data, are sure that you want to exit?",
+                    "Close Window",
+                    MessageBoxButtons.YesNo);
+
+                if (window == DialogResult.Yes)
+                {
+                    foreach (Control ctrl in Form.ActiveForm.Controls)
+                    {
+                        ctrl.Dispose();
+                    }
+                    Form.ActiveForm.Controls.Add(new UserControl1());
+                };
             }
-            Form.ActiveForm.Controls.Add(new UserControl1());
+            else
+            {
+                foreach (Control ctrl in Form.ActiveForm.Controls)
+                {
+                    ctrl.Dispose();
+                }
+                Form.ActiveForm.Controls.Add(new UserControl1());
+            }
+
         }
 
         private void delBackupsBtn_Click(object sender, EventArgs e)
@@ -201,7 +235,36 @@ namespace reception_app
 
         private void backupPanelBtn_Click(object sender, EventArgs e)
         {
+            if (submitBtn.Enabled)
+            {
+                var window = MessageBox.Show(
+                    "You have unsubmitted data, are sure that you want to exit?",
+                    "Close Window",
+                    MessageBoxButtons.YesNo);
 
+                if (window == DialogResult.Yes)
+                {
+                    foreach (Control ctrl in Form.ActiveForm.Controls)
+                    {
+                        ctrl.Dispose();
+                    }
+                    Form.ActiveForm.Controls.Add(new BackupPanel());
+                };
+            }
+            else
+            {
+                foreach (Control ctrl in Form.ActiveForm.Controls)
+                {
+                    ctrl.Dispose();
+                }
+                Form.ActiveForm.Controls.Add(new BackupPanel());
+            }
+        }
+
+        private void backupElementSelector_SelectedItemChanged(object sender, EventArgs e)
+        {
+            idToBackup = backupElementSelector.Text;
+            backupPanelBtn.Enabled = true;
         }
     }
 }
