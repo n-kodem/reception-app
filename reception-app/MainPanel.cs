@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace reception_app
 {
-    public partial class UserControl1 : UserControl
+    public partial class MainPanel : UserControl
     {
-        public UserControl1()
+        public MainPanel()
         {
             InitializeComponent();
         }

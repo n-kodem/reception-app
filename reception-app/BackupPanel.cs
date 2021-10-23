@@ -25,9 +25,11 @@ namespace reception_app
 
         private void BackupPanel_Load(object sender, EventArgs e)
         {
+            // Setting properties of panel elements
             SubmitBtn.Enabled = false;
             backupSelector.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            // Getting and parsing data from DB
             var sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
             sqlite_conn.Open();
             var sqlite_cmd = sqlite_conn.CreateCommand();
@@ -50,6 +52,7 @@ namespace reception_app
 
             sqlite_conn.Close();
 
+            // Adding dates from backupDataView to backupSelector
             for (int j = 0; j < backupDataView.Rows.Count-1; j += 1)
             {
                 backupSelector.Items.Add(backupDataView.Rows[j].Cells[1].Value);
@@ -58,6 +61,7 @@ namespace reception_app
 
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
+            // Updating data to SQL
             var sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
             sqlite_conn.Open();
             var sqlite_cmd = sqlite_conn.CreateCommand();
@@ -69,14 +73,14 @@ namespace reception_app
                             $"'{backupDataView.Rows[(int)backupSelector.SelectedIndex].Cells[4].Value}')";
             var read = sqlite_cmd.ExecuteNonQuery();
 
-            
-
             sqlite_conn.Close();
-            MessageBox.Show("Submitted");
+            SubmitBtn.Enabled = false;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            // Checking that there is no changes that user left without saving
+            // If there are any - checks that user itended to do that
             if (SubmitBtn.Enabled)
             {
                 var window = MessageBox.Show(
@@ -105,6 +109,7 @@ namespace reception_app
 
         private void backupSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Used to make data change detection work properly also makes menu more responsive
             SubmitBtn.Enabled = true;
         }
     }

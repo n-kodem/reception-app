@@ -27,6 +27,7 @@ namespace reception_app
         {
             submitBtn.Enabled = false;
             backupPanelBtn.Enabled = false;
+            delBtn.Enabled = false;
 
             // Data setup
             SQLiteConnection sqlite_conn;
@@ -57,7 +58,7 @@ namespace reception_app
             backupElementSelector.Items.Clear();
             for (var j = 0;j<researchesSet.Rows.Count;j+=1)
             {
-                backupElementSelector.Items.Add(researchesSet.Rows[j].Cells[0].Value);
+                backupElementSelector.Items.Add($"{int.Parse(researchesSet.Rows[j].Cells[0].Value.ToString()) + 1}");
             }
         }
 
@@ -106,7 +107,7 @@ namespace reception_app
                         // Add changes to changelist
                         test_commands.push($"INSERT INTO " +
                             $"Client(update_date,research_id,research_date,research_name,name) " +
-                            $"VALUES(DATETIME('now'),{researchesSet.Rows[i].Cells[0].Value},'{researchesSet.Rows[i].Cells[1].Value:yyyy-MM-dd HH:mm:ss}'," +
+                            $"VALUES(DATETIME('now','+{i} seconds'),{researchesSet.Rows[i].Cells[0].Value},'{researchesSet.Rows[i].Cells[1].Value:yyyy-MM-dd HH:mm:ss}'," +
                             $"'{researchesSet.Rows[i].Cells[2].Value}','{researchesSet.Rows[i].Cells[3].Value}')");
                         
 
@@ -155,7 +156,7 @@ namespace reception_app
             backupElementSelector.Items.Clear();
             for (var j = 0; j < researchesSet.Rows.Count; j += 1)
             {
-                backupElementSelector.Items.Add(researchesSet.Rows[j].Cells[0]);
+                backupElementSelector.Items.Add($"{int.Parse(researchesSet.Rows[j].Cells[0].Value.ToString())+1}");
             }
         }
 
@@ -174,7 +175,7 @@ namespace reception_app
                     {
                         ctrl.Dispose();
                     }
-                    Form.ActiveForm.Controls.Add(new UserControl1());
+                    Form.ActiveForm.Controls.Add(new MainPanel());
                 };
             }
             else
@@ -183,7 +184,7 @@ namespace reception_app
                 {
                     ctrl.Dispose();
                 }
-                Form.ActiveForm.Controls.Add(new UserControl1());
+                Form.ActiveForm.Controls.Add(new MainPanel());
             }
 
         }
@@ -263,8 +264,63 @@ namespace reception_app
 
         private void backupElementSelector_SelectedItemChanged(object sender, EventArgs e)
         {
-            idToBackup = backupElementSelector.Text;
+            idToBackup = (int.Parse(backupElementSelector.Text) - 1).ToString();
             backupPanelBtn.Enabled = true;
+            delBtn.Enabled = true;
+        }
+
+        private void delBtn_Click(object sender, EventArgs e)
+        {
+            var window = MessageBox.Show(
+            "Are you sure that you want to delete this research? This action cannot be undone.",
+            "Warning!",
+            MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+
+            if(window == DialogResult.Yes)
+            {
+                SQLiteConnection sqlite_conn;
+                SQLiteCommand sqlite_cmd;
+                Kolejka test_commands = new Kolejka(researchesSet.RowCount);
+
+                sqlite_conn = new SQLiteConnection("DataSource=reception.db;Version=3;");
+                sqlite_conn.Open();
+                sqlite_cmd = sqlite_conn.CreateCommand();
+
+                sqlite_cmd.CommandText = $"DELETE FROM Client WHERE research_id = {idToBackup};";
+                var read = sqlite_cmd.ExecuteNonQuery();
+                sqlite_cmd.Reset();
+
+
+                sqlite_cmd.CommandText = $"DELETE FROM Client WHERE update_date NOT IN " +
+     $"(SELECT MAX(update_date) FROM Client GROUP BY research_id);";
+
+                sqlite_cmd.ExecuteNonQuery();
+
+                sqlite_cmd.Reset();
+
+                // RELOAD UI
+                sqlite_cmd.CommandText = $"SELECT MAX(update_date),research_id,research_date,research_name,name " +
+                    $"FROM Client GROUP BY research_id;";
+                var read2 = sqlite_cmd.ExecuteReader();
+
+                researchesSet.Rows.Clear();
+
+                while (read2.Read())
+                {
+                    researchesSet.Rows.Add(new object[]
+                    {
+                    read2.GetValue(read2.GetOrdinal("research_id")),
+                    read2.GetValue(read2.GetOrdinal("research_date")),
+                    read2.GetValue(read2.GetOrdinal("research_name")),
+                    read2.GetValue(read2.GetOrdinal("name"))
+                    });
+                }
+
+
+                sqlite_conn.Close();
+            }
+
+
         }
     }
 }

@@ -30,14 +30,14 @@ namespace reception_app
         private void InitializeComponent()
         {
             this.backupDataView = new System.Windows.Forms.DataGridView();
+            this.backupSelector = new System.Windows.Forms.ComboBox();
+            this.SubmitBtn = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backup_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.research_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.research_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupSelector = new System.Windows.Forms.ComboBox();
-            this.SubmitBtn = new System.Windows.Forms.Button();
-            this.cancelBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.backupDataView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,54 +50,14 @@ namespace reception_app
             this.research_date,
             this.research_name,
             this.name});
-            this.backupDataView.Location = new System.Drawing.Point(40, 3);
+            this.backupDataView.Location = new System.Drawing.Point(3, 3);
             this.backupDataView.Name = "backupDataView";
             this.backupDataView.RowHeadersWidth = 51;
             this.backupDataView.RowTemplate.Height = 29;
             this.backupDataView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.backupDataView.Size = new System.Drawing.Size(574, 327);
+            this.backupDataView.Size = new System.Drawing.Size(814, 327);
             this.backupDataView.TabIndex = 0;
             this.backupDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.backupDataView_CellContentClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            this.ID.Width = 125;
-            // 
-            // backup_date
-            // 
-            this.backup_date.HeaderText = "Data Backupu";
-            this.backup_date.MinimumWidth = 6;
-            this.backup_date.Name = "backup_date";
-            this.backup_date.ReadOnly = true;
-            this.backup_date.Width = 125;
-            // 
-            // research_date
-            // 
-            this.research_date.HeaderText = "Data Badania";
-            this.research_date.MinimumWidth = 6;
-            this.research_date.Name = "research_date";
-            this.research_date.ReadOnly = true;
-            this.research_date.Width = 125;
-            // 
-            // research_name
-            // 
-            this.research_name.HeaderText = "Nazwa Badania";
-            this.research_name.MinimumWidth = 6;
-            this.research_name.Name = "research_name";
-            this.research_name.ReadOnly = true;
-            this.research_name.Width = 125;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Dane Pacjenta";
-            this.name.MinimumWidth = 6;
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 125;
             // 
             // backupSelector
             // 
@@ -129,6 +89,46 @@ namespace reception_app
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            this.ID.Width = 125;
+            // 
+            // backup_date
+            // 
+            this.backup_date.HeaderText = "Data Backupu";
+            this.backup_date.MinimumWidth = 6;
+            this.backup_date.Name = "backup_date";
+            this.backup_date.ReadOnly = true;
+            this.backup_date.Width = 200;
+            // 
+            // research_date
+            // 
+            this.research_date.HeaderText = "Data Badania";
+            this.research_date.MinimumWidth = 6;
+            this.research_date.Name = "research_date";
+            this.research_date.ReadOnly = true;
+            this.research_date.Width = 200;
+            // 
+            // research_name
+            // 
+            this.research_name.HeaderText = "Nazwa Badania";
+            this.research_name.MinimumWidth = 6;
+            this.research_name.Name = "research_name";
+            this.research_name.ReadOnly = true;
+            this.research_name.Width = 200;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Dane Pacjenta";
+            this.name.MinimumWidth = 6;
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 160;
+            // 
             // BackupPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -138,7 +138,7 @@ namespace reception_app
             this.Controls.Add(this.backupSelector);
             this.Controls.Add(this.backupDataView);
             this.Name = "BackupPanel";
-            this.Size = new System.Drawing.Size(673, 448);
+            this.Size = new System.Drawing.Size(840, 448);
             this.Load += new System.EventHandler(this.BackupPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.backupDataView)).EndInit();
             this.ResumeLayout(false);
@@ -148,13 +148,13 @@ namespace reception_app
         #endregion
 
         private System.Windows.Forms.DataGridView backupDataView;
+        private System.Windows.Forms.ComboBox backupSelector;
+        private System.Windows.Forms.Button SubmitBtn;
+        private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn backup_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn research_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn research_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.ComboBox backupSelector;
-        private System.Windows.Forms.Button SubmitBtn;
-        private System.Windows.Forms.Button cancelBtn;
     }
 }

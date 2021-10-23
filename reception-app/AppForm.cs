@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace reception_app
 {
-    public partial class Form1 : Form
+    public partial class AppForm : Form
     {
-        public Form1()
+        public AppForm()
         {
             //TODO: Settings
             //TODO: Backup system
@@ -24,7 +24,7 @@ namespace reception_app
             {
                 ctrl.Dispose();
             }
-            this.Controls.Add(new UserControl1());
+            this.Controls.Add(new MainPanel());
         }
         private void Form1_Load(object sender, EventArgs e)
         {

@@ -39,6 +39,7 @@ namespace reception_app
             this.backupElementSelector = new System.Windows.Forms.DomainUpDown();
             this.delBackupsBtn = new System.Windows.Forms.Button();
             this.backupPanelBtn = new System.Windows.Forms.Button();
+            this.delBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.researchesSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,12 +116,12 @@ namespace reception_app
             // 
             // backupElementSelector
             // 
-            this.backupElementSelector.Location = new System.Drawing.Point(539, 404);
+            this.backupElementSelector.Location = new System.Drawing.Point(539, 395);
             this.backupElementSelector.Name = "backupElementSelector";
             this.backupElementSelector.ReadOnly = true;
             this.backupElementSelector.Size = new System.Drawing.Size(150, 27);
             this.backupElementSelector.TabIndex = 5;
-            this.backupElementSelector.Text = "hiddenID";
+            this.backupElementSelector.Text = "Select patient";
             this.backupElementSelector.SelectedItemChanged += new System.EventHandler(this.backupElementSelector_SelectedItemChanged);
             // 
             // delBackupsBtn
@@ -135,7 +136,7 @@ namespace reception_app
             // 
             // backupPanelBtn
             // 
-            this.backupPanelBtn.Location = new System.Drawing.Point(539, 360);
+            this.backupPanelBtn.Location = new System.Drawing.Point(539, 351);
             this.backupPanelBtn.Name = "backupPanelBtn";
             this.backupPanelBtn.Size = new System.Drawing.Size(150, 38);
             this.backupPanelBtn.TabIndex = 7;
@@ -143,10 +144,21 @@ namespace reception_app
             this.backupPanelBtn.UseVisualStyleBackColor = true;
             this.backupPanelBtn.Click += new System.EventHandler(this.backupPanelBtn_Click);
             // 
+            // delBtn
+            // 
+            this.delBtn.Location = new System.Drawing.Point(539, 429);
+            this.delBtn.Name = "delBtn";
+            this.delBtn.Size = new System.Drawing.Size(150, 38);
+            this.delBtn.TabIndex = 8;
+            this.delBtn.Text = "Delete Selected Res";
+            this.delBtn.UseVisualStyleBackColor = true;
+            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.delBtn);
             this.Controls.Add(this.backupPanelBtn);
             this.Controls.Add(this.delBackupsBtn);
             this.Controls.Add(this.backupElementSelector);
@@ -172,5 +184,6 @@ namespace reception_app
         private System.Windows.Forms.DataGridViewTextBoxColumn research_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn patient;
         private System.Windows.Forms.Button backupPanelBtn;
+        private System.Windows.Forms.Button delBtn;
     }
 }

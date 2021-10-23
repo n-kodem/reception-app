@@ -1,7 +1,7 @@
 ﻿
 namespace reception_app
 {
-    partial class Form1
+    partial class AppForm
     {
         /// <summary>
         ///  Required designer variable.

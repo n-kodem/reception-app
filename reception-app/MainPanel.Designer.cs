@@ -1,7 +1,7 @@
 ﻿
 namespace reception_app
 {
-    partial class UserControl1
+    partial class MainPanel
     {
         /// <summary> 
         /// Wymagana zmienna projektanta.

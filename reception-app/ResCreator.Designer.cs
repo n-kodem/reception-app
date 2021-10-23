@@ -68,7 +68,7 @@ namespace reception_app
             // submitBtn
             // 
             this.submitBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.submitBtn.Location = new System.Drawing.Point(274, 125);
+            this.submitBtn.Location = new System.Drawing.Point(269, 342);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(139, 59);
             this.submitBtn.TabIndex = 6;
@@ -101,7 +101,7 @@ namespace reception_app
             // cancelBtn
             // 
             this.cancelBtn.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cancelBtn.Location = new System.Drawing.Point(29, 125);
+            this.cancelBtn.Location = new System.Drawing.Point(34, 342);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(137, 59);
             this.cancelBtn.TabIndex = 9;
